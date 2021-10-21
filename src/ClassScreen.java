@@ -8,6 +8,10 @@ import java.util.Arrays;
 
 public class ClassScreen extends JFrame implements ActionListener {
     JPanel classPanel;
+    JButton newButton;
+
+    JTable dataTable;
+    JScrollPane scrollPane;
 
     public ClassScreen() {
         classPanel = new JPanel();
@@ -17,6 +21,24 @@ public class ClassScreen extends JFrame implements ActionListener {
         classPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        newButton = new JButton("+");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        classPanel.add(newButton, gbc);
+
+        String[] column = {"ID", "FIRST NAME", "SECOND NAME", "AGE"};
+
+        String[][] data = {{"100", "Jayden", "Butler", "18"},
+                {"101", "Timothy", "Bond", "16"},
+                {"102", "Ben", "O'Conner", "95"}};
+
+        dataTable = new JTable(data, column);
+        scrollPane = new JScrollPane(dataTable);
+
+        gbc.gridy = 1;
+        gbc.gridwidth = 4;
+
+        classPanel.add(scrollPane, gbc);
     }
 
     public JPanel getUI(){
